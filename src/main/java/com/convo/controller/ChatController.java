@@ -25,7 +25,7 @@ public class ChatController {
 	@Autowired
 	private MessageHandler messageHandler;
 
-	@RequestMapping(value = "/message/send", method = RequestMethod.POST)
+	@RequestMapping(value = "/message/send/personal", method = RequestMethod.POST)
 	protected ResponseEntity<BaseResponse> sendMessage(@RequestBody SendMessageRequest sendMessageRequest) {
 		BaseResponse baseResponse = BaseResponse.builder().build();
 		HttpStatus status = null;
