@@ -40,7 +40,7 @@ public class ChatController {
 		return new ResponseEntity<>(baseResponse, status);
 	}
 
-	@RequestMapping(value = "/message/list/personal")
+	@RequestMapping(value = "/message/list/personal", method = RequestMethod.POST)
 	protected ResponseEntity<ShowPersonalMessagesResponse> showPersonalMessages(
 			@RequestBody ShowPersonalMessagesRequest request) {
 		ShowPersonalMessagesResponse response = ShowPersonalMessagesResponse.builder().build();
