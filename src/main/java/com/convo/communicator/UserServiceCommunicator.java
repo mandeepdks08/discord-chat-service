@@ -28,6 +28,19 @@ public class UserServiceCommunicator {
 		return ObjectUtils.firstNonNull(usersDetails, new ArrayList<>());
 	}
 
+	public User authenticate(String token) throws Exception {
+		JSONObject request = new JSONObject();
+		request.append("token", token);
+		JSONObject authenticationResponse = getResponse("/user/v1/authenticate", request, RequestMethod.POST,
+				JSONObject.class);
+		if (authenticationResponse.getJSONObject("user") != null) {
+			return User.createUserFromJsonObjet(authenticationResponse.getJSONObject("user"));
+		} else {
+			String error = (String) authenticationResponse.getJSONArray("errors").toList().get(0);
+			throw new Exception("Failed to authenticate the user. Error message is: " + error);
+		}
+	}
+
 	private <T, RT> RT getResponse(String endpoint, T input, RequestMethod requestMethod, Class<RT> returnType) {
 		if (requestMethod.equals(RequestMethod.POST)) {
 			RestTemplate restTemplate = new RestTemplate();
