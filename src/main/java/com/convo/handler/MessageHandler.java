@@ -38,6 +38,7 @@ public class MessageHandler {
 		Integer offset = ObjectUtils.firstNonNull(request.getOffset(), 0);
 		Integer limit = request.getLimit() != null ? Math.min(request.getLimit(), 100) : 100;
 		Pageable pageable = PageRequest.of(offset, limit, Sort.by("processedon").descending());
-		return messageRepo.findByToUserId(loggedInUser.getUserId(), pageable).toList();
+		return messageRepo.findMessagesBetweenUserIds(request.getFriendUserId(), loggedInUser.getUserId(), pageable)
+				.toList();
 	}
 }

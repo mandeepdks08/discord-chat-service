@@ -40,6 +40,11 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	implementation 'org.postgresql:postgresql:42.2.5'
+	
+	compile group: 'org.json', name: 'json', version: '20180813'
+	
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.0'
 }
 
 sourceCompatibility = 1.8
